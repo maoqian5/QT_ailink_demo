@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Child_UI_mutilTPMS</class>
+ <widget class="QWidget" name="Child_UI_mutilTPMS">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>553</width>
+    <height>529</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TPMS</string>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

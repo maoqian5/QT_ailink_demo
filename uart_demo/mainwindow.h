@@ -6,6 +6,7 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include <QList>
 #include <QDebug>
+#include "child_ui_mutiltpms.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +43,7 @@ public:
     QStringList getPortNameList();
     QString QByteArray_add_Space_to_QString(QByteArray temp_QByteArray);
 
+    Child_UI_mutilTPMS my_mutilTPMS;//定义子窗口
 private slots:
     void on_btn_openConsole_clicked();
     void on_btn_send_clicked();
@@ -53,6 +55,8 @@ private slots:
     void on_btn_refreshCOM_clicked();
 
     void timerEvent(QTimerEvent *);//超时回调
+
+    void on_btn_mutilTPMS_clicked();//定义跳转到子窗口的信号槽
 
 private:
     Ui::MainWindow *ui;

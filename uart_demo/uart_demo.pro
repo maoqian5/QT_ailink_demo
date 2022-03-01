@@ -25,10 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    child_ui_mutiltpms.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    child_ui_mutiltpms.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    child_ui_mutiltpms.ui

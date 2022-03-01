@@ -79,7 +79,8 @@ MainWindow::MainWindow(QWidget *parent) :
          //禁用发送按钮
          ui->btn_send->setEnabled(false);
 
-
+    //子窗口
+    //通过按钮信号槽来写,不能同时写,否则出发两次 connect(ui->btn_mutilTPMS, &QPushButton::clicked, this, &MainWindow::on_btn_mutilTPMS_clicked);
 
 }
 
@@ -356,4 +357,17 @@ QString MainWindow :: QByteArray_add_Space_to_QString(QByteArray temp_QByteArray
         qDebug()<<"处理后的串口数据0: "<<return_string;
     }
     return return_string;
+}
+//窗口跳转函数
+void MainWindow::on_btn_mutilTPMS_clicked()
+{
+    if(my_mutilTPMS.isVisible())
+        my_mutilTPMS.close();
+    else
+    {
+        QPoint globalPos = MainWindow::mapToGlobal(QPoint(0, 0));
+        my_mutilTPMS.move(globalPos.x() + 520, globalPos.y() + 30);
+        my_mutilTPMS.show();
+
+    }
 }
