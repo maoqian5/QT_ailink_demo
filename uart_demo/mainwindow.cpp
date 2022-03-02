@@ -366,8 +366,18 @@ void MainWindow::on_btn_mutilTPMS_clicked()
     else
     {
         QPoint globalPos = MainWindow::mapToGlobal(QPoint(0, 0));
-        my_mutilTPMS.move(globalPos.x() + 520, globalPos.y() + 30);
+        my_mutilTPMS.move(globalPos.x() + 530, globalPos.y() + 45);
         my_mutilTPMS.show();
 
     }
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent* event)
+{
+    QPoint Et_pos = event->pos();//鼠标光标相对于接收事件的小部件的位置(可以理解为当前窗口的鼠标位置?)
+    QPoint Et_global_ = event->globalPos();//事件发生时鼠标光标的全局位置(可以理解为当前屏幕的鼠标位置?)
+
+    ui->lblMouseEventETlPos->setText("FormXY:" + QString("(%1,%2)").arg(Et_pos.x()).arg(Et_pos.y()));//鼠标的全局坐标
+    ui->lblMouseEventGlobalPos->setText("GlobalXY:" +QString("(%1,%2)").arg(Et_global_.x()).arg(Et_global_.y()));//鼠标的全局坐标
+
 }

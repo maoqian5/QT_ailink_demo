@@ -6,6 +6,7 @@ Child_UI_mutilTPMS::Child_UI_mutilTPMS(QWidget *parent) :
     ui(new Ui::Child_UI_mutilTPMS)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowTitleHint);
 }
 
 Child_UI_mutilTPMS::~Child_UI_mutilTPMS()

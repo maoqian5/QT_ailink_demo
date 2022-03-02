@@ -44,6 +44,7 @@ public:
     QString QByteArray_add_Space_to_QString(QByteArray temp_QByteArray);
 
     Child_UI_mutilTPMS my_mutilTPMS;//定义子窗口
+
 private slots:
     void on_btn_openConsole_clicked();
     void on_btn_send_clicked();
@@ -58,6 +59,7 @@ private slots:
 
     void on_btn_mutilTPMS_clicked();//定义跳转到子窗口的信号槽
 
+    void mouseMoveEvent(QMouseEvent* event);
 private:
     Ui::MainWindow *ui;
     QSerialPort *serial;
