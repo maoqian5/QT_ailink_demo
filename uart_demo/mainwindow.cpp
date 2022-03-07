@@ -4,6 +4,10 @@
 #include<windows.h>
 
 #include <QDateTime>
+#include <Qicon>
+
+char *url_reflash_pic =  ":/pic/image/reflash.png"; //刷新图片的路径
+
 static const char blankString[] = QT_TRANSLATE_NOOP("SettingsDialog", "N/A");
 M_mytimerID mytimerID;
 M_serial_buff myserial_buff;
@@ -13,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    cest123.cui = ui;
+    cest123.ailink_window_init(ui);
 
     serial = new QSerialPort;
     QString description;
@@ -78,7 +84,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
          //禁用发送按钮
          ui->btn_send->setEnabled(false);
+        //ui->btn_SetBleName->setIcon(QPixmap("C:/Users/96012/Desktop/123.png"));
 
+
+        ui->btn_reflash_BleName->setIcon(QPixmap(url_reflash_pic));
     //子窗口
     //通过按钮信号槽来写,不能同时写,否则出发两次 connect(ui->btn_mutilTPMS, &QPushButton::clicked, this, &MainWindow::on_btn_mutilTPMS_clicked);
 
@@ -379,5 +388,11 @@ void MainWindow::mouseMoveEvent(QMouseEvent* event)
 
     ui->lblMouseEventETlPos->setText("FormXY:" + QString("(%1,%2)").arg(Et_pos.x()).arg(Et_pos.y()));//鼠标的全局坐标
     ui->lblMouseEventGlobalPos->setText("GlobalXY:" +QString("(%1,%2)").arg(Et_global_.x()).arg(Et_global_.y()));//鼠标的全局坐标
+
+}
+
+void MainWindow::on_btn_SetBleName_clicked()
+{
+    cest123.set_ble_name();
 
 }

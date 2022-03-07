@@ -22,16 +22,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += ./image
 
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    child_ui_mutiltpms.cpp
+    child_ui_mutiltpms.cpp \
+    ailink_common.cpp
 
 HEADERS += \
         mainwindow.h \
-    child_ui_mutiltpms.h
+    child_ui_mutiltpms.h \
+    ailink_common.h
 
 FORMS += \
         mainwindow.ui \
     child_ui_mutiltpms.ui
+
+RESOURCES += \
+    pic.qrc
+
+

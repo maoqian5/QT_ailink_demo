@@ -7,6 +7,7 @@
 #include <QList>
 #include <QDebug>
 #include "child_ui_mutiltpms.h"
+#include "ailink_common.h"
 
 namespace Ui {
 class MainWindow;
@@ -60,9 +61,13 @@ private slots:
     void on_btn_mutilTPMS_clicked();//定义跳转到子窗口的信号槽
 
     void mouseMoveEvent(QMouseEvent* event);
+    void on_btn_SetBleName_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *serial;
+
+     ailink_common_tag cest123;
 };
 
 #endif // MAINWINDOW_H

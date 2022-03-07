@@ -275,15 +275,15 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>30</y>
-        <width>421</width>
+        <y>40</y>
+        <width>461</width>
         <height>71</height>
        </rect>
       </property>
       <property name="title">
        <string>蓝牙名称</string>
       </property>
-      <widget class="QTextEdit" name="textEdit">
+      <widget class="QTextEdit" name="textEdit_Name">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -293,7 +293,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="comboBox_NameMacLen">
        <property name="geometry">
         <rect>
          <x>120</x>
@@ -303,30 +303,43 @@
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btn_SetBleName">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>180</x>
          <y>30</y>
          <width>93</width>
          <height>31</height>
         </rect>
        </property>
        <property name="text">
-        <string>PushButton</string>
+        <string>设置名称</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="label_BleName">
        <property name="geometry">
         <rect>
-         <x>330</x>
-         <y>40</y>
+         <x>370</x>
+         <y>30</y>
          <width>81</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
         <string>TextLabel</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_reflash_BleName">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>30</y>
+         <width>31</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
