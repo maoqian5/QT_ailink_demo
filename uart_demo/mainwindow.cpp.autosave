@@ -447,3 +447,21 @@ void  mainwindow_text_log_show(QByteArray show_bytes ,Ui::MainWindow *P_ui)
     QString datetime = dt.toString("HH:mm:ss.zzz");
     P_ui->textEdit_recv->append("["+datetime + "]发→◇" +temp_strsend);
 }
+//搜索功能
+void MainWindow::show_findText()
+{
+    QString findtext=find_textLineEdit->text();//获得对话框的内容
+    if(ui->textEdit->find(findtext,QTextDocument::FindBackward))//查找后一个
+    {
+        // 查找到后高亮显示
+        QPalette palette = ui->textEdit->palette();
+        palette.setColor(QPalette::Highlight,palette.color(QPalette::Active,QPalette::Highlight));
+        ui->textEdit->setPalette(palette);
+    }
+    else
+    {
+        QMessageBox::information(this,tr("注意"),tr("没有找到内容"),QMessageBox::Ok);
+    }
+ 
+ 
+}

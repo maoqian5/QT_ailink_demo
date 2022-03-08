@@ -42,9 +42,12 @@ public:
     ~MainWindow();
 
     QStringList getPortNameList();
-    QString QByteArray_add_Space_to_QString(QByteArray temp_QByteArray);
+
 
     Child_UI_mutilTPMS my_mutilTPMS;//定义子窗口
+
+    void    mainwindow_log_show(QByteArray input_ByteArray , QString input_String);//log 窗口
+
 
 private slots:
     void on_btn_openConsole_clicked();
@@ -63,11 +66,16 @@ private slots:
     void mouseMoveEvent(QMouseEvent* event);
     void on_btn_SetBleName_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *serial;
 
-     ailink_common_tag cest123;
+     ailink_common_tag ailink_common_func;
 };
 
 #endif // MAINWINDOW_H
+
+extern QString QByteArray_add_Space_to_QString(QByteArray temp_QByteArray);
+extern void  mainwindow_text_log_show(QByteArray show_bytes ,Ui::MainWindow *P_ui);
+
