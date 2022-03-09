@@ -78,6 +78,9 @@ void ailink_common_tag ::ailink_window_init(Ui::MainWindow *ailink_ui)
                                                QStringLiteral("12"),
                                                  });
 
+
 }
+
+
 
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1208</width>
+    <width>1583</width>
     <height>985</height>
    </rect>
   </property>
@@ -160,7 +160,7 @@
      <rect>
       <x>190</x>
       <y>30</y>
-      <width>331</width>
+      <width>461</width>
       <height>411</height>
      </rect>
     </property>
@@ -172,7 +172,7 @@
       <rect>
        <x>20</x>
        <y>10</y>
-       <width>281</width>
+       <width>431</width>
        <height>331</height>
       </rect>
      </property>
@@ -182,7 +182,7 @@
       <rect>
        <x>10</x>
        <y>350</y>
-       <width>291</width>
+       <width>441</width>
        <height>51</height>
       </rect>
      </property>
@@ -208,8 +208,8 @@
      <rect>
       <x>20</x>
       <y>450</y>
-      <width>461</width>
-      <height>241</height>
+      <width>101</width>
+      <height>81</height>
      </rect>
     </property>
     <property name="title">
@@ -255,13 +255,13 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="tabWidget_AIlink_PT">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>30</y>
+      <x>670</x>
+      <y>70</y>
       <width>671</width>
-      <height>891</height>
+      <height>831</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -276,7 +276,7 @@
        <rect>
         <x>10</x>
         <y>40</y>
-        <width>461</width>
+        <width>641</width>
         <height>71</height>
        </rect>
       </property>
@@ -348,7 +348,7 @@
        <rect>
         <x>10</x>
         <y>110</y>
-        <width>461</width>
+        <width>641</width>
         <height>71</height>
        </rect>
       </property>
@@ -420,7 +420,7 @@
        <rect>
         <x>10</x>
         <y>180</y>
-        <width>461</width>
+        <width>641</width>
         <height>71</height>
        </rect>
       </property>
@@ -492,7 +492,7 @@
        <rect>
         <x>10</x>
         <y>260</y>
-        <width>461</width>
+        <width>641</width>
         <height>71</height>
        </rect>
       </property>
@@ -564,7 +564,7 @@
        <rect>
         <x>10</x>
         <y>330</y>
-        <width>461</width>
+        <width>641</width>
         <height>71</height>
        </rect>
       </property>
@@ -636,7 +636,7 @@
        <rect>
         <x>10</x>
         <y>400</y>
-        <width>461</width>
+        <width>641</width>
         <height>71</height>
        </rect>
       </property>
@@ -735,13 +735,62 @@
      </attribute>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="groupBox_FineAiLinkPT">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>0</y>
+      <width>391</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string> fine</string>
+    </property>
+    <widget class="QTextEdit" name="textEdit_FineTXT">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_FineAilinkPT_F">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>20</y>
+       <width>81</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string> 向前</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_FineAilinkPT_B">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>20</y>
+       <width>81</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string> 向后</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1208</width>
+     <width>1583</width>
      <height>26</height>
     </rect>
    </property>

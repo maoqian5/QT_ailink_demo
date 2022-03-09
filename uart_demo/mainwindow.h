@@ -66,6 +66,10 @@ private slots:
     void mouseMoveEvent(QMouseEvent* event);
     void on_btn_SetBleName_clicked();
 
+    void on_btn_findText_clicked();
+    void on_btn_FineAilinkPT_F_clicked();
+
+    void on_btn_FineAilinkPT_B_clicked();
 
 private:
     Ui::MainWindow *ui;

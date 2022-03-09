@@ -447,3 +447,71 @@ void  mainwindow_text_log_show(QByteArray show_bytes ,Ui::MainWindow *P_ui)
     QString datetime = dt.toString("HH:mm:ss.zzz");
     P_ui->textEdit_recv->append("["+datetime + "]发→◇" +temp_strsend);
 }
+//搜索功能
+void MainWindow::on_btn_findText_clicked()
+{
+    QString findtext= ui->textEdit_send->toPlainText();//获得对话框的内容
+    if(ui->textEdit_recv->find(findtext,QTextDocument::FindBackward))//查找后一个
+    // if(ui->tabWidget->findChildren(findtext))
+    {
+        // 查找到后高亮显示
+        QPalette palette = ui->textEdit_send->palette();
+        palette.setColor(QPalette::Highlight,palette.color(QPalette::Active,QPalette::Highlight));
+        ui->textEdit_send->setPalette(palette);
+    }
+    else
+    {
+       // QMessageBox::information(this,tr("注意"),tr("没有找到内容"),QMessageBox::Ok);
+    }
+}
+//向前搜索tabwidget选项
+void MainWindow::on_btn_FineAilinkPT_F_clicked()
+{
+
+    int AILINK_PT_COUNT =  ui->tabWidget_AIlink_PT->count();//tag数量
+    QString findtext= ui->textEdit_FineTXT->toPlainText();//获得对话框的内容
+    //qDebug("AILINK_PT_COUNT=%d",AILINK_PT_COUNT);//
+
+
+    for(int i = ui->tabWidget_AIlink_PT->currentIndex() ;i >=0 ;i--)
+    {
+
+        QString textString = ui->tabWidget_AIlink_PT->tabText(i);//获取tab的标题
+         //qDebug()<<"textString="<<textString;
+         //qDebug()<<"fine textString="<<findtext;
+        if(textString.contains(findtext , Qt::CaseSensitive)  )//比较是否含有标题的内容
+        {
+            //qDebug("包含~");
+            if(i!=ui->tabWidget_AIlink_PT->currentIndex())
+            {
+                ui->tabWidget_AIlink_PT->setCurrentIndex(i);
+                break;
+            }
+        }
+    }
+}
+//向后搜索tabwidget选项
+void MainWindow::on_btn_FineAilinkPT_B_clicked()
+{
+    int AILINK_PT_COUNT =  ui->tabWidget_AIlink_PT->count();//tag数量
+    QString findtext= ui->textEdit_FineTXT->toPlainText();//获得对话框的内容
+    //qDebug("AILINK_PT_COUNT=%d",AILINK_PT_COUNT);//
+
+
+    for(int i = ui->tabWidget_AIlink_PT->currentIndex() ;i < AILINK_PT_COUNT ;i++)
+    {
+
+        QString textString = ui->tabWidget_AIlink_PT->tabText(i);//获取tab的标题
+        // qDebug()<<"textString="<<textString;
+        // qDebug()<<"fine textString="<<findtext;
+        if(textString.contains(findtext , Qt::CaseSensitive)  )//比较是否含有标题的内容
+        {
+          //  qDebug("包含~");
+            if(i!=ui->tabWidget_AIlink_PT->currentIndex())
+            {
+                ui->tabWidget_AIlink_PT->setCurrentIndex(i);
+                break;
+            }
+        }
+    }
+}

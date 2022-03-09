@@ -27,5 +27,6 @@ private slots:
     void on_btn_SetBleName_clicked();
     void on_btn_send_clicked();
     void on_btn_openConsole_clicked();
+    void on_btn_findText_clicked();
 };
 #endif // AILINK_COMMON_H
