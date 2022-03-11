@@ -5,7 +5,8 @@
 
 #include <QDateTime>
 #include <Qicon>
-
+#include <QMessageBox>
+#include <QTimer>
 const char *url_reflash_pic =  ":/pic/image/reflash.png"; //刷新图片的路径
 
 static const char blankString[] = QT_TRANSLATE_NOOP("SettingsDialog", "N/A");
@@ -234,10 +235,10 @@ void convertStringToHex(const QString &str, QByteArray &byteData)
     }
     byteData.resize(hexdatalen);
 }
-//发送数据槽函数
+//发送数据
 void MainWindow::on_btn_send_clicked()
 {
- //serial->write(ui->textEdit_send->toPlainText().toLatin1());
+   //serial->write(ui->textEdit_send->toPlainText().toLatin1());
 
     QString m_strSendData = ui->textEdit_send->toPlainText();
 
@@ -282,7 +283,8 @@ void MainWindow::readData()
 
     qDebug()<<"receiveInfo()"<<endl;
     QByteArray info = serial->readAll();//获取com口数据
-
+    memcpy(myserial_buff.serial_data_bytes.data()+myserial_buff.serial_data_bytes_len,info,info.size());
+    myserial_buff.serial_data_bytes += info;
 
 
     qDebug()<<"处理前的串口数据: "<<info;
@@ -377,10 +379,22 @@ void MainWindow::timerEvent(QTimerEvent *t)
         {
             if(myserial_buff.Got_serial_data_F)
             {
+                MySerialSignalSlot mySerial;
+                mySerial.serial_buff = myserial_buff;
+                QObject::connect(&mySerial,&MySerialSignalSlot::MySignal,&mySerial,&MySerialSignalSlot::recSlot);//信号函数和槽函数相连接
+                QObject::connect(&mySerial,&MySerialSignalSlot::MySignal,&recSlot_ailink);//信号函数和槽函数相连接
+
+                mySerial.emitSignal();//发射 Signal 信号
+
+                //log界面顯示
                 QDateTime dt = QDateTime::currentDateTime();
                 QString datetime = dt.toString("HH:mm:ss.zzz");
                 ui->textEdit_recv->append("["+datetime + "]收←◆" +myserial_buff.Got_serial_data_buff );
                 myserial_buff.Got_serial_data_buff = "";
+
+                qDebug()<<"serial_data_bytes="<<myserial_buff.serial_data_bytes;
+                myserial_buff.serial_data_bytes.resize(0);
+                myserial_buff.serial_data_bytes_len = 0;
             }
             myserial_buff.Got_serial_data_F = 0;
             mytimerID.serial_timeout_cnt = 0;
@@ -514,4 +528,11 @@ void MainWindow::on_btn_FineAilinkPT_B_clicked()
             }
         }
     }
+}
+
+//串口数据处理
+void recSlot_ailink(M_serial_buff serial_buff)
+{
+    qDebug("recSlot_ailink");//
+
 }

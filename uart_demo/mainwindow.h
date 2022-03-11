@@ -8,6 +8,9 @@
 #include <QDebug>
 #include "child_ui_mutiltpms.h"
 #include "ailink_common.h"
+#include <QMessageBox>
+#include <QTimer>
+#include <Thread>
 
 namespace Ui {
 class MainWindow;
@@ -28,8 +31,10 @@ extern M_mytimerID mytimerID;
 class M_serial_buff
 {
 public :
-    bool Got_serial_data_F;
-    QString Got_serial_data_buff;
+    bool        Got_serial_data_F;
+    QString     Got_serial_data_buff;
+    QByteArray  serial_data_bytes;
+    int         serial_data_bytes_len;
 };
 extern M_serial_buff myserial_buff;
 
@@ -82,4 +87,30 @@ private:
 
 extern QString QByteArray_add_Space_to_QString(QByteArray temp_QByteArray);
 extern void  mainwindow_text_log_show(QByteArray show_bytes ,Ui::MainWindow *P_ui);
+
+
+//自定义信号与槽
+class MySerialSignalSlot:public QWidget{
+
+    Q_OBJECT//Q_OBJECT 是一个宏，添加它才能正常使用 Qt 的信号和槽机制
+
+signals://信号函数
+    void MySignal(M_serial_buff serial_buff);
+public:
+    //发射信号的函数
+    void emitSignal(){
+        emit MySignal(serial_buff);
+    }
+
+
+public slots://槽函数
+    void recSlot(M_serial_buff serial_buff){
+        qDebug() << "执行 recSlot2() 槽函数，输出"<<serial_buff.Got_serial_data_buff;
+
+    }
+public:
+    M_serial_buff serial_buff;
+};
+extern  void recSlot_ailink(M_serial_buff serial_buff);
+
 
