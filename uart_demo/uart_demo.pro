@@ -28,12 +28,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     child_ui_mutiltpms.cpp \
-    ailink_common.cpp
+    ailink_common.cpp \
+    ailink_bm_temphum.cpp
 
 HEADERS += \
         mainwindow.h \
     child_ui_mutiltpms.h \
-    ailink_common.h
+    ailink_common.h \
+    ailink_bm_temphum.h
 
 FORMS += \
         mainwindow.ui \

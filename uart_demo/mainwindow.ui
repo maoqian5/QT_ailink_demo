@@ -260,12 +260,12 @@
      <rect>
       <x>670</x>
       <y>70</y>
-      <width>671</width>
+      <width>851</width>
       <height>831</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -704,35 +704,799 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_4">
+    <widget class="QWidget" name="tab_1">
      <attribute name="title">
-      <string>ailink通用设置</string>
+      <string> BM温湿度计</string>
      </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>ailink通用设置</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_3">
-     <attribute name="title">
-      <string>ailink通用设置</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_5">
-     <attribute name="title">
-      <string>页</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_6">
-     <attribute name="title">
-      <string>页</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_7">
-     <attribute name="title">
-      <string>页</string>
-     </attribute>
+     <widget class="QGroupBox" name="groupBox_13">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>351</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string> ID</string>
+      </property>
+      <widget class="QPushButton" name="btn_SetDeviceID">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>70</y>
+         <width>93</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>设置</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_14">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>111</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string> 设置ID</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_BleName_14">
+          <property name="text">
+           <string>CID</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_ID_CID">
+          <property name="text">
+           <string> 002E</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_BleName_15">
+          <property name="text">
+           <string>VID</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QTextEdit" name="label_ID_VID">
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;0000&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_BleName_16">
+          <property name="text">
+           <string>PID</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QTextEdit" name="label_ID_PID">
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;0000&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="btn_ReadDeviceID">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>120</y>
+         <width>93</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>获取</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_17">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>30</y>
+         <width>91</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string> 获取ID</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_BleName_17">
+          <property name="text">
+           <string>CID</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_BleName_18">
+          <property name="text">
+           <string>00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_BleName_19">
+          <property name="text">
+           <string>VID</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_BleName_20">
+          <property name="text">
+           <string>PID</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_BleName_21">
+          <property name="text">
+           <string>00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="label_BleName_22">
+          <property name="text">
+           <string>00</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <zorder>btn_SetDeviceID</zorder>
+      <zorder>groupBox_14</zorder>
+      <zorder>groupBox_14</zorder>
+      <zorder>btn_ReadDeviceID</zorder>
+      <zorder>groupBox_17</zorder>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_18">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>190</y>
+        <width>171</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>设备支持的功能</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_9">
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBox">
+         <property name="text">
+          <string>温湿度校准</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="checkBox_2">
+         <property name="text">
+          <string>蜂鸣器报警</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="checkBox_3">
+         <property name="text">
+          <string>闹钟功能</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="checkBox_5">
+         <property name="text">
+          <string>小夜灯</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="checkBox_4">
+         <property name="text">
+          <string>整点报时</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QCheckBox" name="checkBox_6">
+         <property name="text">
+          <string>背光亮度</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_19">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>190</y>
+        <width>141</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>   变化阈值</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_BleName_23">
+         <property name="text">
+          <string> 温度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_BleName_25">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_BleName_24">
+         <property name="text">
+          <string> 湿度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_BleName_26">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_20">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>300</y>
+        <width>141</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>温湿度校准值</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_BleName_27">
+         <property name="text">
+          <string> 温度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_BleName_28">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_BleName_29">
+         <property name="text">
+          <string> 湿度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_BleName_30">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_21">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>190</y>
+        <width>201</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string> 报警功能</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_12">
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_BleName_31">
+         <property name="text">
+          <string> 温度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_BleName_33">
+         <property name="text">
+          <string> 湿度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_BleName_32">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_BleName_34">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBoxHexReceive_3">
+         <property name="text">
+          <string>开/关</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="checkBoxHexReceive_4">
+         <property name="text">
+          <string>开/关</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_22">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>300</y>
+        <width>201</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>蜂鸣器报警功能</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_13">
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_BleName_35">
+         <property name="text">
+          <string>状态</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBoxHexReceive_5">
+         <property name="text">
+          <string>开/关</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_23">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>400</y>
+        <width>321</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>闹钟功能</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_14">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_BleName_36">
+         <property name="text">
+          <string>编号</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_BleName_37">
+         <property name="text">
+          <string>状态</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_BleName_41">
+         <property name="text">
+          <string>2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_BleName_39">
+         <property name="text">
+          <string>模式</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_BleName_42">
+         <property name="text">
+          <string>4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_BleName_38">
+         <property name="text">
+          <string>时间:年月日时分秒</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_BleName_44">
+         <property name="text">
+          <string>3</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_BleName_40">
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_BleName_43">
+         <property name="text">
+          <string>5</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_BleName_45">
+         <property name="text">
+          <string>已关闭</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_BleName_46">
+         <property name="text">
+          <string>已关闭</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="label_BleName_47">
+         <property name="text">
+          <string>已关闭</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="label_BleName_49">
+         <property name="text">
+          <string>已关闭</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLabel" name="label_BleName_48">
+         <property name="text">
+          <string>已关闭</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_BleName_50">
+         <property name="text">
+          <string>单次</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="label_BleName_57">
+         <property name="text">
+          <string>每天</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="label_BleName_56">
+         <property name="text">
+          <string>每天</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QLabel" name="label_BleName_55">
+         <property name="text">
+          <string>每天</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QLabel" name="label_BleName_54">
+         <property name="text">
+          <string>每天</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="label_BleName_59">
+         <property name="text">
+          <string>0:0:0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLabel" name="label_BleName_58">
+         <property name="text">
+          <string>0:0:0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLabel" name="label_BleName_53">
+         <property name="text">
+          <string>0:0:0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLabel" name="label_BleName_52">
+         <property name="text">
+          <string>0:0:0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QLabel" name="label_BleName_51">
+         <property name="text">
+          <string>0:0:0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_24">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>190</y>
+        <width>201</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>整点报时</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_15">
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_BleName_60">
+         <property name="text">
+          <string>状态</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBoxHexReceive_6">
+         <property name="text">
+          <string>开/关</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_25">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>300</y>
+        <width>201</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>小夜灯</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_16">
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_BleName_61">
+         <property name="text">
+          <string>状态</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBoxHexReceive_7">
+         <property name="text">
+          <string>开/关</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_26">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>400</y>
+        <width>201</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>背光亮度</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_17">
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_BleName_62">
+         <property name="text">
+          <string>状态</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBoxHexReceive_8">
+         <property name="text">
+          <string>开/关</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_27">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>400</y>
+        <width>201</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>设备单位</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_18">
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="radioButton">
+         <property name="text">
+          <string> ℃</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="radioButton_2">
+         <property name="text">
+          <string> ℉</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_28">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>500</y>
+        <width>421</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string> 当前温湿度值</string>
+      </property>
+      <widget class="QLabel" name="label_BleName_64">
+       <property name="geometry">
+        <rect>
+         <x>12</x>
+         <y>82</y>
+         <width>46</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string> 湿度:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_BleName_63">
+       <property name="geometry">
+        <rect>
+         <x>12</x>
+         <y>27</y>
+         <width>46</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string> 温度:</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="textEdit_FineTXT_6">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>20</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="textEdit_FineTXT_7">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>80</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_FineAiLinkPT">

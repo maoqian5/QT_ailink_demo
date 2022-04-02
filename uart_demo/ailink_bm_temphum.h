@@ -1,19 +1,18 @@
-#ifndef AILINK_COMMON_H
-#define AILINK_COMMON_H
+#ifndef AILINK_BM_TEMPHUM_H
+#define AILINK_BM_TEMPHUM_H
 
 #include "ui_mainwindow.h"
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
-
-namespace cui {
-class ailink_common_tag;
+namespace ui_AilinkBMTempHum {
+class ailink_BMTempHum_tag;
 }
 
 extern QByteArray Temp_Byte_payload1 ;
 extern QByteArray *P_Temp_Byte_payload1 ;
 
 
-class ailink_common_tag
+class ailink_BMTempHum_tag
 {
 public :
     Ui::MainWindow *cui;
@@ -33,14 +32,19 @@ private slots:
     void on_btn_findText_clicked();
 };
 
-enum
-{
-    AiLink_A6_CMD_SetID = 0x1D,
-    AiLink_A6_CMD_ReadID = 0x1E,
-
-};
-
-#endif // AILINK_COMMON_H
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+#endif // AILINK_BM_TEMPHUM_H

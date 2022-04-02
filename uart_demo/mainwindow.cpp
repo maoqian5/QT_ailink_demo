@@ -18,15 +18,28 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    serial = new QSerialPort; // 定义一个serial
+
     ailink_common_func.cui = ui;//ailink通用ui指向主UI
     ailink_common_func.ailink_window_init(ui);//初始化ailink common 通用UI
-
-    serial = new QSerialPort; // 定义一个serial
     ailink_common_func.P_ailink_serial = serial; //ailink 通用serial 指向 主UI的serial
+
+    ailink_BMTempHum_func.cui = ui;//ailink通用ui指向主UI
+    ailink_BMTempHum_func.ailink_window_init(ui);//初始化ailink common 通用UI
+    ailink_BMTempHum_func.P_ailink_serial = serial; //ailink 通用serial 指向 主UI的serial
+
+
+
+
+
+
+
+
 
     QString description; //serial com口 的几个参数
     QString manufacturer;//serial com口 的几个参数
     QString serialNumber;//serial com口 的几个参数
+
 
     //serial的超时定时器 , 超时才显示
     qsrand(time(0));
@@ -108,6 +121,7 @@ MainWindow::~MainWindow()
 // 打开/关闭serial 口
 void MainWindow::on_btn_openConsole_clicked()
 {
+
     qDebug() << ui->btn_openConsole->text();
     if (ui->btn_openConsole->text() == tr("打开串口"))
     {
@@ -154,7 +168,7 @@ void MainWindow::on_btn_openConsole_clicked()
          serial->setFlowControl(QSerialPort::SoftwareControl);
 
         //打开串口
-        if (serial->open(QIODevice::ReadWrite))
+        if (serial->open(QIODevice::ReadWrite))//打开成功
         {
             ui->comboBox_baudRate->setEnabled(false);
             ui->comboBox_dataBits->setEnabled(false);
@@ -166,7 +180,7 @@ void MainWindow::on_btn_openConsole_clicked()
             ui->btn_openConsole->setText(tr("关闭串口"));
             ui->btn_refreshCOM->setEnabled(false);
             //信号与槽函数关联
-            connect(serial, &QSerialPort::readyRead, this, &MainWindow::readData);
+//改用定时器获取            connect(serial, &QSerialPort::readyRead, this, &MainWindow::readData);
             serial->clear();
         }
         else
@@ -188,7 +202,7 @@ void MainWindow::on_btn_openConsole_clicked()
         ui->btn_refreshCOM->setEnabled(true);
         ui->btn_openConsole->setText(tr("打开串口"));
         ui->btn_send->setEnabled(false);
-        disconnect(serial, &QSerialPort::readyRead, this, &MainWindow::readData);//不加这个容易导致奔溃
+ //改用定时器获取       disconnect(serial, &QSerialPort::readyRead, this, &MainWindow::readData);//不加这个容易导致奔溃
     }
 }
 
@@ -281,10 +295,13 @@ void MainWindow::on_btn_clearSend_clicked()
 void MainWindow::readData()
 {
 
-    qDebug()<<"receiveInfo()"<<endl;
+
     QByteArray info = serial->readAll();//获取com口数据
+    if(info.size()==0)return;
+    qDebug()<<"receiveInfo()"<<endl;
     memcpy(myserial_buff.serial_data_bytes.data()+myserial_buff.serial_data_bytes_len,info,info.size());
-    myserial_buff.serial_data_bytes += info;
+    myserial_buff.serial_data_bytes_len+=info.size();
+    //myserial_buff.serial_data_bytes += info;
 
 
     qDebug()<<"处理前的串口数据: "<<info;
@@ -308,7 +325,7 @@ void MainWindow::readData()
 
          qDebug()<<"处理后的串口数据: "<<strReceiveData;
         // ui->textEdit_recv->append('['+datetime + "]  " +strReceiveData );
-          myserial_buff.Got_serial_data_buff = myserial_buff.Got_serial_data_buff+strReceiveData;
+          myserial_buff.Got_serial_data_String = myserial_buff.Got_serial_data_String+strReceiveData;
     }
     else
     {
@@ -321,9 +338,9 @@ void MainWindow::readData()
         //ui->textEdit_recv->append(tmpQStr);
         qDebug()<<"处理后的串口数据: "<<tmpQStr;
         //ui->textEdit_recv->append('['+datetime + "]  " +tmpQStr );
-        myserial_buff.Got_serial_data_buff = myserial_buff.Got_serial_data_buff+tmpQStr;
+        myserial_buff.Got_serial_data_String = myserial_buff.Got_serial_data_String+tmpQStr;
     }
-    myserial_buff.Got_serial_data_F = 1;
+    myserial_buff.Got_serial_data_Flag = 1;
     mytimerID.serial_timeout_cnt = 0 ;
 
     //ui->txtReceiveData->append("\r\n");
@@ -374,29 +391,48 @@ void MainWindow::timerEvent(QTimerEvent *t)
     if(temp_timeID==mytimerID.serial_timeout_timerID)//serial数据回调
     {
 
-        if(mytimerID.serial_timeout_cnt<5)mytimerID.serial_timeout_cnt++;
+        if(mytimerID.serial_timeout_cnt<5){
+            mytimerID.serial_timeout_cnt++;
+            if (ui->btn_openConsole->text() == tr("关闭串口"))readData();
+        }
         else
         {
-            if(myserial_buff.Got_serial_data_F)
+
+            if(myserial_buff.Got_serial_data_Flag)
             {
-                MySerialSignalSlot mySerial;
+                qDebug()<<"myserial_buff_len="<<myserial_buff.serial_data_bytes_len;
+                qDebug()<<"myserial_buff.serial_data_bytes.size()="<<myserial_buff.serial_data_bytes.size();
+                MySerialSignalSlot mySerial;//信号槽数据定义
+
+
                 mySerial.serial_buff = myserial_buff;
+                mySerial.Sui = ui;
+
+                mySerial.serial_buff.serial_data_bytes.resize(myserial_buff.serial_data_bytes.size()) ;
+                mySerial.serial_buff.serial_data_bytes = myserial_buff.serial_data_bytes;
+                qDebug()<<"myserial_buff.serial_data_bytes.size()="<<myserial_buff.serial_data_bytes.size();
+                qDebug()<<"myserial_buff.serial_data_bytes.size()="<<myserial_buff.serial_data_bytes.size();
+                for(int i=0;i<myserial_buff.serial_data_bytes.size();i++)
+                {
+                    qDebug("mySerial.serial_buff[%d] = %02x",i,mySerial.serial_buff.serial_data_bytes.at(i));
+                }
                 QObject::connect(&mySerial,&MySerialSignalSlot::MySignal,&mySerial,&MySerialSignalSlot::recSlot);//信号函数和槽函数相连接
                 QObject::connect(&mySerial,&MySerialSignalSlot::MySignal,&recSlot_ailink);//信号函数和槽函数相连接
+                QObject::connect(&mySerial,&MySerialSignalSlot::MySignal,&Get_Serial_data_fun);//信号函数和槽函数相连接
 
                 mySerial.emitSignal();//发射 Signal 信号
 
                 //log界面顯示
                 QDateTime dt = QDateTime::currentDateTime();
                 QString datetime = dt.toString("HH:mm:ss.zzz");
-                ui->textEdit_recv->append("["+datetime + "]收←◆" +myserial_buff.Got_serial_data_buff );
-                myserial_buff.Got_serial_data_buff = "";
+                ui->textEdit_recv->append("["+datetime + "]收←◆" +myserial_buff.Got_serial_data_String );
+                myserial_buff.Got_serial_data_String = "";
 
                 qDebug()<<"serial_data_bytes="<<myserial_buff.serial_data_bytes;
                 myserial_buff.serial_data_bytes.resize(0);
                 myserial_buff.serial_data_bytes_len = 0;
             }
-            myserial_buff.Got_serial_data_F = 0;
+            myserial_buff.Got_serial_data_Flag = 0;
             mytimerID.serial_timeout_cnt = 0;
         }
     }
@@ -484,16 +520,15 @@ void MainWindow::on_btn_FineAilinkPT_F_clicked()
 
     int AILINK_PT_COUNT =  ui->tabWidget_AIlink_PT->count();//tag数量
     QString findtext= ui->textEdit_FineTXT->toPlainText();//获得对话框的内容
-    //qDebug("AILINK_PT_COUNT=%d",AILINK_PT_COUNT);//
+    qDebug("AILINK_PT_COUNT=%d",AILINK_PT_COUNT);//
 
 
     for(int i = ui->tabWidget_AIlink_PT->currentIndex() ;i >=0 ;i--)
     {
-
         QString textString = ui->tabWidget_AIlink_PT->tabText(i);//获取tab的标题
-         //qDebug()<<"textString="<<textString;
-         //qDebug()<<"fine textString="<<findtext;
-        if(textString.contains(findtext , Qt::CaseSensitive)  )//比较是否含有标题的内容
+       // qDebug()<<textString.contains(findtext , Qt::CaseSensitive);//分大小写
+       // qDebug()<<textString.contains(findtext , Qt::CaseInsensitive);//不分大小写
+        if(textString.contains(findtext , Qt::CaseInsensitive)  )//比较是否含有标题的内容
         {
             //qDebug("包含~");
             if(i!=ui->tabWidget_AIlink_PT->currentIndex())
@@ -509,16 +544,14 @@ void MainWindow::on_btn_FineAilinkPT_B_clicked()
 {
     int AILINK_PT_COUNT =  ui->tabWidget_AIlink_PT->count();//tag数量
     QString findtext= ui->textEdit_FineTXT->toPlainText();//获得对话框的内容
-    //qDebug("AILINK_PT_COUNT=%d",AILINK_PT_COUNT);//
-
+    qDebug("AILINK_PT_COUNT=%d",AILINK_PT_COUNT);//
 
     for(int i = ui->tabWidget_AIlink_PT->currentIndex() ;i < AILINK_PT_COUNT ;i++)
     {
-
         QString textString = ui->tabWidget_AIlink_PT->tabText(i);//获取tab的标题
-        // qDebug()<<"textString="<<textString;
-        // qDebug()<<"fine textString="<<findtext;
-        if(textString.contains(findtext , Qt::CaseSensitive)  )//比较是否含有标题的内容
+       // qDebug()<<textString.contains(findtext , Qt::CaseSensitive);//分大小写
+       // qDebug()<<textString.contains(findtext , Qt::CaseInsensitive);//不分大小写
+        if(textString.contains(findtext , Qt::CaseInsensitive)  )//比较是否含有标题的内容
         {
           //  qDebug("包含~");
             if(i!=ui->tabWidget_AIlink_PT->currentIndex())
@@ -531,8 +564,13 @@ void MainWindow::on_btn_FineAilinkPT_B_clicked()
 }
 
 //串口数据处理
-void recSlot_ailink(M_serial_buff serial_buff)
+void recSlot_ailink(M_serial_buff serial_buff ,Ui::MainWindow *Sui)
 {
+    M_serial_buff serial_buff1 = serial_buff;
     qDebug("recSlot_ailink");//
-
+    qDebug("recSlot_ailink buff len = %d",serial_buff1.serial_data_bytes_len);//
+     Sui->label_BleName->setText(serial_buff.Got_serial_data_String);
 }
+
+
+

@@ -78,9 +78,70 @@ void ailink_common_tag ::ailink_window_init(Ui::MainWindow *ailink_ui)
                                                QStringLiteral("12"),
                                                  });
 
+    //设置状态
+    ailink_ui->checkBoxHexReceive_3->setEnabled(true);
+    ailink_ui->checkBoxHexReceive_3->setCheckState(Qt::Unchecked);//Qt::Checked  Qt::Unchecked
+    ailink_ui->checkBoxHexReceive_3->setEnabled(false);
+
+
 
 }
 
+
+void  Get_Serial_data_fun(M_serial_buff serial_buff ,Ui::MainWindow *Sui)
+{
+     qDebug("Get_Serial_data_fun");//
+     Sui->label_BleName->setText(serial_buff.Got_serial_data_String);
+     quint8 len = serial_buff.serial_data_bytes_len ;
+     serial_buff.serial_data_bytes.resize(len);
+     QByteArray data =  serial_buff.serial_data_bytes;
+     quint8 n = 0 ;
+     quint8 i = 0 ;
+
+
+     qDebug("len=%d",len);//
+      qDebug("data.at(0)=%d",serial_buff.serial_data_bytes.at(0));//
+     if(len >= 4)
+     {
+         for(n=0; n<len; n++)
+         {
+              // qDebug("data[n]=%d",serial_buff.serial_data_bytes[n]);//
+               if(serial_buff.serial_data_bytes.at(0)==0xa6) qDebug("get buff 0x12");
+             if(data[n]  == _Ailink_Cmd_A6_Head)
+             {
+
+                 //-------payload长度不为0，总长度必须大于等于payload长度+3,有效长度小于等于20
+                 if(data[n+1] && (data[n+1] <= (len-n-4)) )
+                 {
+                     if(data[n+1+data[n+1]+2]==_Ailink_Cmd_A6_End)
+                     {
+                         goto __L_ParseElinkSetCmd;
+                     }
+ __L_directData1:
+                     n=n;//减少编译出现的警告
+                 }
+
+             }
+
+         }
+     }
+    return;
+    __L_ParseElinkSetCmd:
+    quint8 checksum = 0;
+    quint8 indexPayloadLen1 = n+1;
+    checksum+=data[indexPayloadLen1];
+    for(i=0; i<data[indexPayloadLen1]; i++)
+    {
+        checksum += data[i+indexPayloadLen1+1];
+        qDebug("checksum=%d",checksum);//
+    }
+    if(checksum != data[indexPayloadLen1+data[indexPayloadLen1]+1])
+    {
+        goto __L_directData1;
+    }
+    qDebug("A6 cmd");//
+
+}
 
 
 

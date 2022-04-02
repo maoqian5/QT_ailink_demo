@@ -11,7 +11,8 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <Thread>
-
+#include <QStandardItemModel>
+#include "ailink_bm_temphum.h"
 namespace Ui {
 class MainWindow;
 }
@@ -31,10 +32,11 @@ extern M_mytimerID mytimerID;
 class M_serial_buff
 {
 public :
-    bool        Got_serial_data_F;
-    QString     Got_serial_data_buff;
     QByteArray  serial_data_bytes;
-    int         serial_data_bytes_len;
+    quint8      serial_data_bytes_len;
+    quint8      Got_serial_data_Flag;
+    QString     Got_serial_data_String;
+
 };
 extern M_serial_buff myserial_buff;
 
@@ -76,11 +78,16 @@ private slots:
 
     void on_btn_FineAilinkPT_B_clicked();
 
+    void on_btn_SetDeviceID_clicked();
+
+    void on_btn_ReadDeviceID_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *serial;
 
      ailink_common_tag ailink_common_func;
+     ailink_BMTempHum_tag ailink_BMTempHum_func;
 };
 
 #endif // MAINWINDOW_H
@@ -95,22 +102,28 @@ class MySerialSignalSlot:public QWidget{
     Q_OBJECT//Q_OBJECT 是一个宏，添加它才能正常使用 Qt 的信号和槽机制
 
 signals://信号函数
-    void MySignal(M_serial_buff serial_buff);
+    void MySignal(M_serial_buff serial_buff ,Ui::MainWindow *Sui);
 public:
     //发射信号的函数
     void emitSignal(){
-        emit MySignal(serial_buff);
+        emit MySignal(serial_buff ,Sui);
     }
 
 
 public slots://槽函数
-    void recSlot(M_serial_buff serial_buff){
-        qDebug() << "执行 recSlot2() 槽函数，输出"<<serial_buff.Got_serial_data_buff;
+    void recSlot(M_serial_buff serial_buff ,Ui::MainWindow *Sui){
+        qDebug() << "执行 recSlot2() 槽函数，输出"<<serial_buff.Got_serial_data_String;
+        qDebug() << "serial_data_bytes_len，输出"<<serial_buff.serial_data_bytes_len;
+        qDebug() << "Got_serial_data_Flag，输出"<<serial_buff.Got_serial_data_Flag;
+         qDebug() << "serial_data_bytes，输出"<<serial_buff.serial_data_bytes;
 
     }
 public:
     M_serial_buff serial_buff;
+    Ui::MainWindow *Sui ;
 };
-extern  void recSlot_ailink(M_serial_buff serial_buff);
+extern  void recSlot_ailink(M_serial_buff serial_buff ,Ui::MainWindow *Sui);
+extern  void  Get_Serial_data_fun(M_serial_buff serial_buff ,Ui::MainWindow *Sui);
 
-
+char convertCharToHex(char ch);
+void convertStringToHex(const QString &str, QByteArray &byteData);
